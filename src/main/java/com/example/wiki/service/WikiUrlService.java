@@ -22,10 +22,7 @@ public class WikiUrlService {
         var payload = wikiService.getWikiPayload(query);
 
         if (Objects.nonNull(payload) && Objects.nonNull(payload.getQuery()) && Objects.nonNull(payload.getQuery().getPages())) {
-            return payload.getQuery().getPages().stream()
-                    .filter(page -> page.getSnippet().toLowerCase().contains("football") &&
-                            page.getTitle().contains(query))
-                    .findFirst()
+            return payload.getQuery().getPages().stream()                    .findFirst()
                     .map(page -> String.format(result, page.getTitle())).orElse(null);
         }
         return null;
